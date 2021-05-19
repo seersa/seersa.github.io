@@ -236,7 +236,7 @@ function drawHighscore() {
     c.fillRect(canvas.width/2-300,0,580,canvas.height)
     c.strokeRect(canvas.width/2-300,0,580,canvas.height)
 
-    getSavedScore()
+    //getSavedScore()
     c.font = "32px verdana"
     c.fillStyle = "#000000"
     c.fillText("Highscore",canvas.width/2-87, 40)
@@ -302,7 +302,7 @@ function animate() {
     if (!gameOver) {
         myReq = requestAnimationFrame(animate)
     } else {
-        saveScore()
+        //saveScore()
         stopInterval()
         drawGameOver()
         stopAnimation()
