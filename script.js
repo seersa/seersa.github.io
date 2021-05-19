@@ -27,7 +27,7 @@ let isClickDown = false
 
 //The score in the game
 let score = 0
-let savedScore = []
+let savedScore = [1]
 
 // id's to be able to call interval functions
 let idIntervalAdd
