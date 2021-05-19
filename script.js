@@ -223,9 +223,11 @@ function saveScore() {
 
 // Get the savedScore array localy on computer
 function getSavedScore() {
-    let retrievedSavedScore = localStorage.getItem("score")
-    savedScore = retrievedSavedScore.split(",")
-    console.log(retrievedSavedScore)
+    if (savedScore.length > 0) {
+        let retrievedSavedScore = localStorage.getItem("score")
+        savedScore = retrievedSavedScore.split(",")
+        console.log(retrievedSavedScore)
+    }
 }
 
 // Collect highscore localy on computer and draw top 10
