@@ -203,23 +203,23 @@ function drawScore() {
     c.fillText("Score: " + printedScore, 10, 20)
 }
 
-// Stores an array of 10 best highscores localy on computer
-function saveScore() {
-    getSavedScore()
-    savedScore.push(printedScore)
-    for (let i = 0; i < savedScore.length; i++) {
-        savedScore[i] = parseInt(savedScore[i],10)
-    }
-    console.log(savedScore)
-    // Otherwise it is sorted lexicographicaly
-    savedScore.sort(function(a,b){return a - b}).reverse()
-    
-    // Max length 10
-    while (savedScore.length > 10) {
-        savedScore.pop()
-    }
-    localStorage.setItem("score", savedScore)
-}
+//// Stores an array of 10 best highscores localy on computer
+//function saveScore() {
+//    getSavedScore()
+//    savedScore.push(printedScore)
+//    for (let i = 0; i < savedScore.length; i++) {
+//        savedScore[i] = parseInt(savedScore[i],10)
+//    }
+//    console.log(savedScore)
+//    // Otherwise it is sorted lexicographicaly
+//    savedScore.sort(function(a,b){return a - b}).reverse()
+//    
+//    // Max length 10
+//    while (savedScore.length > 10) {
+//        savedScore.pop()
+//    }
+//    localStorage.setItem("score", savedScore)
+//}
 
 //// Get the savedScore array localy on computer
 //function getSavedScore() {
