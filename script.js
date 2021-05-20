@@ -27,7 +27,7 @@ let isClickDown = false
 
 //The score in the game
 let score = 0
-let savedScore = [1]
+let savedScore = []
 
 // id's to be able to call interval functions
 let idIntervalAdd
@@ -208,12 +208,12 @@ function saveScore() {
     getSavedScore()
     savedScore.push(printedScore)
     for (let i = 0; i < savedScore.length; i++) {
-        savedScore[i] = parseInt(savedScore[i],10)
+        savedScore[i] = parseInt(savedScore[i], 10)
     }
     console.log(savedScore)
     // Otherwise it is sorted lexicographicaly
-    savedScore.sort(function(a,b){return a - b}).reverse()
-    
+    savedScore.sort(function (a, b) { return a - b }).reverse()
+
     // Max length 10
     while (savedScore.length > 10) {
         savedScore.pop()
@@ -224,27 +224,29 @@ function saveScore() {
 // Get the savedScore array localy on computer
 function getSavedScore() {
     let retrievedSavedScore = localStorage.getItem("score")
-    savedScore = retrievedSavedScore.split(",")
-    console.log(retrievedSavedScore)
+    if (retrievedSavedScore != null) {
+        savedScore = retrievedSavedScore.split(",")
+        console.log(retrievedSavedScore)
+    }
 }
 
 // Collect highscore localy on computer and draw top 10
 function drawHighscore() {
     c.fillStyle = "#e9f0ad"
-    c.fillRect(canvas.width/2-300,0,580,canvas.height)
-    c.strokeRect(canvas.width/2-300,0,580,canvas.height)
+    c.fillRect(canvas.width / 2 - 300, 0, 580, canvas.height)
+    c.strokeRect(canvas.width / 2 - 300, 0, 580, canvas.height)
 
     getSavedScore()
     c.font = "32px verdana"
     c.fillStyle = "#000000"
-    c.fillText("Highscore",canvas.width/2-87, 40)
+    c.fillText("Highscore", canvas.width / 2 - 87, 40)
     for (let i = 0; i < savedScore.length; i++) {
         if (i != 9) {
-            c.fillText(i+1 + ".  " + savedScore[i], canvas.width/2-60, i*65+85); 
+            c.fillText(i + 1 + ".  " + savedScore[i], canvas.width / 2 - 60, i * 65 + 85);
         } else {
-            c.fillText(i+1 + ".  " + savedScore[i], canvas.width/2-80, i*65+85); 
+            c.fillText(i + 1 + ".  " + savedScore[i], canvas.width / 2 - 80, i * 65 + 85);
         }
-        c.fillText("-----------------", canvas.width/2-130, (i+1)*65+40)
+        c.fillText("-----------------", canvas.width / 2 - 130, (i + 1) * 65 + 40)
     }
 }
 
@@ -280,7 +282,7 @@ function drawGround() {
 function addImgHowToPlay() {
     let img = new Image()
     img.src = 'howToPlay.png'
-    c.drawImage(img,0,0)
+    c.drawImage(img, 0, 0)
 }
 
 // Recursive function that clears the canvas and draws the tubes and birds at their new position
