@@ -203,13 +203,38 @@ function drawScore() {
     c.fillText("Score: " + printedScore, 10, 20)
 }
 
+// Stores an array of 10 best highscores localy on computer
+function saveScore() {
+    getSavedScore()
+    savedScore.push(printedScore)
+    for (let i = 0; i < savedScore.length; i++) {
+        savedScore[i] = parseInt(savedScore[i],10)
+    }
+    console.log(savedScore)
+    // Otherwise it is sorted lexicographicaly
+    savedScore.sort(function(a,b){return a - b}).reverse()
+    
+    // Max length 10
+    while (savedScore.length > 10) {
+        savedScore.pop()
+    }
+    localStorage.setItem("score", savedScore)
+}
+
+// Get the savedScore array localy on computer
+function getSavedScore() {
+    let retrievedSavedScore = localStorage.getItem("score")
+    savedScore = retrievedSavedScore.split(",")
+    console.log(retrievedSavedScore)
+}
+
 // Collect highscore localy on computer and draw top 10
 function drawHighscore() {
     c.fillStyle = "#e9f0ad"
     c.fillRect(canvas.width/2-300,0,580,canvas.height)
     c.strokeRect(canvas.width/2-300,0,580,canvas.height)
 
-    //getSavedScore()
+    getSavedScore()
     c.font = "32px verdana"
     c.fillStyle = "#000000"
     c.fillText("Highscore",canvas.width/2-87, 40)
@@ -275,7 +300,7 @@ function animate() {
     if (!gameOver) {
         myReq = requestAnimationFrame(animate)
     } else {
-        //saveScore()
+        saveScore()
         stopInterval()
         drawGameOver()
         stopAnimation()
